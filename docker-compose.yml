@@ -3,7 +3,7 @@ volumes:
   fin:
 services:  
     notecard-temperature:
-      build: ./notecard-temperature
+      build: ./notecard
       devices:
         - "/dev/i2c-1:/dev/i2c-1"
       privileged: true

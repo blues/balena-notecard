@@ -1,0 +1,8 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:latest
+
+WORKDIR /usr/src/app
+COPY . ./
+
+RUN pip3 install note-python notecard-pseudo-sensor python-periphery
+
+CMD ["python3", "./main.py"]

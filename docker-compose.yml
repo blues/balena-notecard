@@ -1,9 +1,27 @@
-version: '2.1'  
-volumes:  
-  fin:
-services:  
-    notecard-temperature:
-      build: ./notecard
-      devices:
-        - "/dev/i2c-1:/dev/i2c-1"
-      privileged: true
+version: "2.1"
+services:
+  notecard-temperature:
+    build: ./notecard
+    network_mode: host
+    devices:
+      - "/dev/i2c-1:/dev/i2c-1"
+    privileged: true
+  random:
+    build: ./random
+# version: '2.1'
+# volumes:
+#   fin:
+# services:
+#     blues-notecard:
+#       build: ./notecard
+#       network_mode: host
+#       ports:
+#         - 8080
+#       devices:
+#         - "/dev/i2c-1:/dev/i2c-1"
+#       privileged: true
+
+#     random-number:
+#       build: ./random
+#       network_mode: host
+#       privileged: true

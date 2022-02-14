@@ -3,7 +3,7 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-python:latest
 WORKDIR /usr/src/app
 COPY . ./
 
-RUN pip3 install note-python notecard-pseudo-sensor python-periphery
+RUN pip3 install note-python python-periphery
 
 RUN pip3 install Flask flask-socketio==4.3.2 flask_cors flask_basicauth
 

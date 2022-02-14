@@ -1,7 +1,8 @@
 const axios = require("axios");
-let random = 0;
 
 async function main() {
+  let random = 0;
+
   while (true) {
     try {
       const json = `{"number": ${random}}`;
@@ -17,6 +18,13 @@ async function main() {
     }
     console.log("posted: " + random);
     await new Promise((r) => setTimeout(r, 10000));
+
+    // Sync after 5 calls
+    if (random > 5) {
+      random = 0;
+      await axios.post("http://notecard:8080/sync");
+      console.log("performed sync");
+    }
   }
 }
 

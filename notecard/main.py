@@ -1,17 +1,18 @@
 from flask import Flask, request
 from flask_cors import CORS
-import threading
 import json
 import notecard
+import os
 from periphery import I2C
+import threading
 
-PRODUCT_UID = "com.blues.tvantoll:weather" #os.environ['productUID']
-NOTE_FILE = "sensors.qo" #os.environ['noteFile']
-NOTE_MODE = "continuous" #os.environ["noteMode"]
+PRODUCT_UID = "com.blues.tvantoll:weather" #os.getenv("productUID")
+NOTE_FILE = "sensors.qo" #os.getenv("noteFile")
+NOTE_MODE = "continuous" #os.getenv("noteMode")
 
 app = Flask(__name__)
 
-CORS(app, resources={ r'/*': {'origins': '*'}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 print("Initializing Notecard...")
 
@@ -27,14 +28,23 @@ print(json.dumps(req))
 rsp = card.Transaction(req)
 print(rsp)
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def send():
   try:
     sendMessage(request.json)
   except:
-    return "Failed to send the data"
+    return "Failed to send data to Notehub"
 
-  return "The data was successfully sent"
+  return "Successfully sent data to Notehub"
+
+@app.route("/sync", methods=["POST"])
+def sync():
+  try:
+    hubSync()
+  except:
+    return "Failed to sync to Notehub"
+
+  return "Successfully started Notehub sync"
 
 def sendMessage(message):
   req = {"req": "note.add"}
@@ -44,9 +54,13 @@ def sendMessage(message):
   rsp = card.Transaction(req)
   print(rsp)
 
+def hubSync():
+  req = {"req": "hub.sync"}
+  rsp = card.Transaction(req)
+  print(rsp)
+
 def main():
-  global productUID
-  global card
+  print("Starting main...")
 
 if __name__ == "__main__":
   t = threading.Thread(target=main, args=())

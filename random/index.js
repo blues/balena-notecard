@@ -4,12 +4,15 @@ let random = 0;
 async function main() {
   while (true) {
     try {
-      await axios.post("http://192.168.4.64:8080/send", {
-        number: random,
+      const json = `{"number": ${random}}`;
+      await axios.post("http://notecard:8080", json, {
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       random = random + 1;
     } catch (e) {
-      console.log("post did not work");
+      console.log("Post did not work");
       console.log(e.message);
     }
     console.log("posted: " + random);

@@ -1,14 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
-import json
 import notecard
-import os
 from periphery import I2C
-import threading
-
-PRODUCT_UID = "com.blues.tvantoll:weather" #os.getenv("productUID")
-NOTE_FILE = "sensors.qo" #os.getenv("noteFile")
-NOTE_MODE = "continuous" #os.getenv("noteMode")
 
 app = Flask(__name__)
 
@@ -19,55 +12,25 @@ print("Initializing Notecard...")
 port = I2C("/dev/i2c-1")
 card = notecard.OpenI2C(port, 0, 0)
 
-req = {"req": "hub.set"}
-req["product"] = PRODUCT_UID
-req["mode"] = NOTE_MODE
-
-print(json.dumps(req))
-
-rsp = card.Transaction(req)
-print(rsp)
-
 @app.route("/", methods=["POST"])
 def send():
   try:
-    sendMessage(request.json)
+    sendRequest(request.json)
   except:
     return "Failed to send data to Notehub"
 
   return "Successfully sent data to Notehub"
 
-@app.route("/sync", methods=["POST"])
-def sync():
+def sendRequest(requestJSON):
   try:
-    hubSync()
-  except:
-    return "Failed to sync to Notehub"
-
-  return "Successfully started Notehub sync"
-
-def sendMessage(message):
-  req = {"req": "note.add"}
-  req["file"] = NOTE_FILE
-  req["body"] = message
-
-  rsp = card.Transaction(req)
-  print(rsp)
-
-def hubSync():
-  req = {"req": "hub.sync"}
-  rsp = card.Transaction(req)
-  print(rsp)
-
-def main():
-  print("Starting main...")
+    print('the json to send to the Notecard')
+    print(requestJSON)
+    rsp = card.Transaction(requestJSON)
+    print(rsp)
+  except Exception as e:
+    print(e)
+    print("Failed to send data to Notehub")
 
 if __name__ == "__main__":
-  t = threading.Thread(target=main, args=())
-  t.daemon = True
-  t.start()
-
   print("Starting blues notecard thread...")
-  threading.Thread(target=main,daemon=True).start()
-
   app.run(host='0.0.0.0', port='8080', debug=False)

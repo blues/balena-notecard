@@ -7,5 +7,5 @@ services:
     expose:
       - "8080"
     privileged: true
-  random:
-    build: ./random
+  example:
+    build: ./example

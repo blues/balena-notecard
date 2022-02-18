@@ -15,18 +15,16 @@ card = notecard.OpenI2C(port, 0, 0)
 @app.route("/", methods=["POST"])
 def send():
   try:
-    sendRequest(request.json)
+    return sendRequest(request.json)
   except:
     return "Failed to send data to Notehub"
-
-  return "Successfully sent data to Notehub"
 
 def sendRequest(requestJSON):
   try:
     print('the json to send to the Notecard')
     print(requestJSON)
     rsp = card.Transaction(requestJSON)
-    print(rsp)
+    return rsp
   except Exception as e:
     print(e)
     print("Failed to send data to Notehub")

@@ -1,28 +1,25 @@
 # Notecard Balena Block
 
-A [balenaBlock](https://github.com/balenablocks) for interfacing with the [Blues Wireless Notecard](https://blues.io/products/notecard/).
+This is a balena [Block](https://www.balena.io/blog/balenablocks-public-roadmap/) for interfacing with the [Blues Wireless Notecard](https://blues.io/products/notecard/).
 
-Add this block to your Balena application to easily send data to cloud backends via a cellular connection.
+Add this block to your Balena fleet to easily send data to your cloud backend via a low power cellular connection.
 
 ## Prerequisites
 
-This integration assumes that you have done the following.
+To add the Blues Block to your fleet you will need as well to add the Blues connectivity to all of your devices. You will need to add:
 
-1) Purchased a Notecard. If you have not, you can find Notecard developments kits on [shop.blues.io](https://shop.blues.io).
-2) Set up a Notehub account. If you have not, you can create one at [notehub.io](notehub.io).
+* A [Notecard Raspberry Pi Kit](https://shop.blues.io/products/raspberry-pi-starter-kit). 
+* Create a [Notehub](https://notehub.io/) account.
 
 And if all of this is new to you, we’d recommend going through the [Notecard quickstart tutorial](https://dev.blues.io/quickstart/notecard-quickstart) before continuing.
 
-## Docker Setup
+## Block configuration
 
-To use this project, create a container in your `docker-compose.yml` file as shown below.
+To add the Blues Block, add this service in your `docker-compose.yml`, as shown below.
 
 ```
-version: "2.1"
-services:
   notecard:
     image: "tjvantoll/balena-notecard"
-    build: ./src
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
     expose:
@@ -32,7 +29,11 @@ services:
 
 ## Usage
 
-Once you have everything installed, you can use the Notecard by POSTing JSON requests to `http://notecard:8080`. For example, the following code performs a [`hub.set` command](https://dev.blues.io/reference/notecard-api/hub-requests/#hub-set) on the Notecard.
+Once you have everything deployed on your fleet, you can use the Notecard by POSTing JSON requests to `http://notecard:8080`. 
+
+![diagram-blues-balena](https://user-images.githubusercontent.com/173156/158283207-0568c9eb-9e3a-451d-b426-27c75b983e85.png)
+
+For example, the following code performs a [`hub.set` command](https://dev.blues.io/reference/notecard-api/hub-requests/#hub-set) on the Notecard.
 
 ```python
 import requests
@@ -45,6 +46,7 @@ url = "http://notecard:8080"
 headers = {"Content-Type": "application/json"}
 result = requests.post(url, json=req, headers=headers)
 ```
+
 
 > **NOTE**: See the [`example-python` folder](example) for a full sample script.
 

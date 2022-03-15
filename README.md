@@ -2,13 +2,13 @@
 
 This is a balena [Block](https://www.balena.io/blog/balenablocks-public-roadmap/) for interfacing with the [Blues Wireless Notecard](https://blues.io/products/notecard/).
 
-Add this block to your Balena fleet to easily send data to your cloud backend via a low power cellular connection.
+Add this block to your Balena fleet to easily send data to your cloud backend via a low-power cellular connection.
 
 ## Prerequisites
 
-To add the Blues Block to your fleet you will need as well to add the Blues connectivity to all of your devices. You will need to add:
+To add the Blues Block to your fleet you need to add Blues Wireless connectivity to all of your devices. To you will need to:
 
-* A [Notecard Raspberry Pi Kit](https://shop.blues.io/products/raspberry-pi-starter-kit). 
+* Purchase a [Notecard Raspberry Pi Kit](https://shop.blues.io/products/raspberry-pi-starter-kit). 
 * Create a [Notehub](https://notehub.io/) account.
 
 And if all of this is new to you, we’d recommend going through the [Notecard quickstart tutorial](https://dev.blues.io/quickstart/notecard-quickstart) before continuing.
@@ -46,7 +46,6 @@ url = "http://notecard:8080"
 headers = {"Content-Type": "application/json"}
 result = requests.post(url, json=req, headers=headers)
 ```
-
 
 > **NOTE**: See the [`example-python` folder](example) for a full sample script.
 

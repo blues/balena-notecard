@@ -15,17 +15,20 @@ And if all of this is new to you, we’d recommend going through the [Notecard q
 
 ## Block configuration
 
-To add the Blues Block, add this service in your `docker-compose.yml`, as shown below.
+To add the Blues Block, add this service in your `docker-compose.yml`, as shown below. 
 
 ```
   notecard:
-    image: "tjvantoll/balena-notecard"
+    image: "bh.cr/blues_wireless/notecard-<architecture>"
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
     expose:
       - "8080"
     privileged: true
 ```
+
+Use `aarch64` on the architecture if you are using a Raspberry Pi 4.
+
 
 ## Usage
 

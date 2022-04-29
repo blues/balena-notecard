@@ -19,7 +19,7 @@ To add the Blues Block, add this service in your `docker-compose.yml`, as shown 
 
 ```
   notecard:
-    image: "tjvantoll/balena-notecard"
+    image: "bh.cr/blues_wireless/notecard-aarch64"
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
     expose:

@@ -1,6 +1,6 @@
 name: "notecard"
 type: "sw.application"
-description: "Notecard Balena Block"
+description: "Add cellular connectivity to your apps with the Blues Wireless Notecard"
 post-provisioning:
 assets:
   repository:

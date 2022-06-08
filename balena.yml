@@ -1,17 +1,16 @@
 name: "notecard"
-type: "sw.application"
+type: "sw.block"
 description: "Add cellular connectivity to your apps with the Blues Wireless Notecard"
-post-provisioning:
 assets:
   repository:
     type: "blob.asset"
     data:
-      url: "https://github.com/tjvantoll/balena-notecard"
+      url: "https://github.com/blues/balena-notecard"
   logo:
     type: "blob.asset"
     data:
-      url: "https://raw.githubusercontent.com/tjvantoll/balena-notecard/master/logo.png"
-
+      url: "https://raw.githubusercontent.com/blues/balena-notecard/master/logo.png"
+data:
   defaultDeviceType: raspberrypi4-64
   supportedDeviceTypes:
     - raspberrypi4-64

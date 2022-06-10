@@ -27,7 +27,7 @@ To add the Blues Block, add this service in your `docker-compose.yml`, as shown 
     privileged: true
 ```
 
-(The currently supported architectures are `aarch64` and `armv7hf`.)
+(The currently supported architectures are `aarch64`, `armv6hf`, and `armv7hf`.)
 
 ## Usage
 

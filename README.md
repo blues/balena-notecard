@@ -19,13 +19,15 @@ To add the Blues Block, add this service in your `docker-compose.yml`, as shown 
 
 ```
   notecard:
-    image: "bh.cr/blues_wireless/notecard-aarch64"
+    image: "bh.cr/blues_wireless/notecard-<architecture>"
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
     expose:
       - "8080"
     privileged: true
 ```
+
+(The currently supported architectures are `aarch64` and `armv7hf`.)
 
 ## Usage
 

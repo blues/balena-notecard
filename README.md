@@ -23,7 +23,7 @@ To add the Blues Block, add this service in your `docker-compose.yml`, as shown 
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
     expose:
-      - "8080"
+      - "3434"
     privileged: true
 ```
 
@@ -31,7 +31,7 @@ To add the Blues Block, add this service in your `docker-compose.yml`, as shown 
 
 ## Usage
 
-Once you have everything deployed on your fleet, you can use the Notecard by POSTing JSON requests to `http://notecard:8080`. 
+Once you have everything deployed on your fleet, you can use the Notecard by POSTing JSON requests to `http://notecard:3434`. 
 
 ![diagram-blues-balena](https://user-images.githubusercontent.com/173156/158283207-0568c9eb-9e3a-451d-b426-27c75b983e85.png)
 
@@ -44,7 +44,7 @@ req = {"req": "hub.set"}
 req["product"] = "com.company.name:myproject"
 req["mode"] = "continuous"
 
-url = "http://notecard:8080"
+url = "http://notecard:3434"
 headers = {"Content-Type": "application/json"}
 result = requests.post(url, json=req, headers=headers)
 ```

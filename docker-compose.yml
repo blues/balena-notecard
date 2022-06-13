@@ -5,5 +5,5 @@ services:
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
     expose:
-      - "8080"
+      - "3434"
     privileged: true

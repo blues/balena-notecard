@@ -15,7 +15,7 @@ And if all of this is new to you, we’d recommend going through the [Notecard q
 
 ## Block configuration
 
-To add the Blues Block, add this service in your `docker-compose.yml`, as shown below.
+To add the Blues Block, add this service in your `docker-compose.yml`, as shown below. 
 
 ```
   notecard:
@@ -27,7 +27,7 @@ To add the Blues Block, add this service in your `docker-compose.yml`, as shown 
     privileged: true
 ```
 
-(The currently supported architectures are `aarch64`, `armv6hf`, and `armv7hf`.)
+Use `aarch64` on the architecture if you are using a Raspberry Pi 4.
 
 ## Usage
 

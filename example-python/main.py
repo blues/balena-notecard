@@ -6,7 +6,7 @@ req = {"req": "hub.set"}
 req["product"] = "com.blues.tvantoll:weather"
 req["mode"] = "continuous"
 
-url = "http://notecard:8080"
+url = "http://notecard:3434"
 headers = {"Content-Type": "application/json"}
 result = requests.post(url, json=req, headers=headers)
 print(result.text)

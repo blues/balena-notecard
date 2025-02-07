@@ -31,4 +31,4 @@ def sendRequest(requestJSON):
 
 if __name__ == "__main__":
   print("Starting blues notecard thread...")
-  app.run(host='0.0.0.0', port='8080', debug=False)
+  app.run(host='0.0.0.0', port='3434', debug=False)
